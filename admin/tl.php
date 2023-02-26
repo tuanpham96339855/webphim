@@ -1,0 +1,40 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['TaiKhoan']))
+    {
+        header('location: login.php');
+    }
+    require_once 'db.php';
+    require_once 'layout_mo.php';
+?>
+    <?php
+        if(isset($_GET['layout_TL']))
+        {
+            switch ($_GET['layout_TL'])
+            {
+                case 'danhsach':
+                    require_once 'theloai/danhsach.php';
+                    break;
+                case 'them':
+                    require_once 'theloai/them.php';
+                    break; 
+                case 'sua':
+                    require_once 'theloai/sua.php';
+                    break; 
+                case 'xoa':
+                    require_once 'theloai/xoa.php';
+                    break;     
+                default:
+                    require_once 'theloai/danhsach.php';
+                    break;    
+            }
+        }
+        else
+        {
+            require_once 'theloai/danhsach.php';
+        }
+    ?>
+<?php
+    require_once 'layout_ket.php';
+?>
+ 
